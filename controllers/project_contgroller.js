@@ -1,4 +1,5 @@
 const createProject = require('../models/create_project');
+const createIssue = require('../models/create_issue');
 
 module.exports.createSession = async function(req, res){
     try {
@@ -29,5 +30,15 @@ module.exports.delete = async function(req, res){
     } catch (error) {
         console.log("Error", error);
         return
+    }
+}
+
+module.exports.projectDetails = async function(req, res){
+    try {
+        return res.render('project_page', {
+            title: "Project Page"
+        })
+    } catch (error) {
+        
     }
 }

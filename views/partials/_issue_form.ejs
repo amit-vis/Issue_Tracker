@@ -1,0 +1,61 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Create Issue</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Issue</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Title:</label>
+            <input type="text" name="name" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Description:</label>
+            <textarea class="form-control" name="description" id="description"></textarea>
+          </div>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Labels
+              </button>
+    
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">label</a></li>
+              </ul>
+            </div>
+            <div class="row mb-3 m-auto">
+              <label for="labels" class="col-sm-4 col-form-label">Add Labels</label>
+    
+              <div class="col-sm-8">
+                <input class="form-check-input" name="labels" type="checkbox" value="Bug" id="bug"/>
+                <label class="form-check-label" for="bug"> Bug </label>
+                <br />
+                <input name="labels" class="form-check-input" type="checkbox" value="UI Improvement" id="ui-improvement"/>
+                <label class="form-check-label" for="ui-improvement">UI Improvement </label>
+                <br />
+                <input name="labels" class="form-check-input" type="checkbox" value="Documentation" id="documentation"/>
+                <label class="form-check-label" for="documentation">Documentation </label>
+                <br />
+                <input name="labels" class="form-check-input" type="checkbox" value="Enhancement" id="enhancement"/>
+                <label class="form-check-label" for="enhancement">Enhancement </label>
+                <br />
+                <input name="labels" class="form-check-input" type="checkbox" value="Duplicate" id="duplicate"/>
+                <label class="form-check-label" for="duplicate"> Duplicate </label>
+              </div>
+            </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Author:</label>
+            <input type="text" name="author" class="form-control" id="author">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="Submit" class="btn btn-primary">Create Issue</button>
+      </div>
+    </div>
+  </div>
+</div>

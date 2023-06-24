@@ -13,7 +13,18 @@ const createProjectSchema = new mongoose.Schema({
     author:{
         type: String,
         required: true
-    }
+    },
+    issues:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Issue"
+        }
+    ],
+    labels:[
+        {
+            type: String
+        }
+    ]
 },{
     timestamps: true
 
