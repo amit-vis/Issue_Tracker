@@ -4,6 +4,8 @@ const router = express.Router();
 
 router.post('/create', projectController.createSession);
 router.get('/delete', projectController.delete);
-router.get('/details', projectController.projectDetails);
+router.get('/:id', projectController.projectDetails);
+router.post('/:id', projectController.createIssueSession);
+router.get('/issue/delete', projectController.deleteIssue);
 
 module.exports = router;

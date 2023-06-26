@@ -1,0 +1,32 @@
+<!-- Button trigger modal -->
+<% if (project.issues.length>=1){%>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#example">
+    All Issues
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">All Issue</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <%for (let issue of project.issues){%>
+        <div class="modal-body">
+            <div>
+                <a href="/project/issue/delete?id=<%= issue.id %>">X</a>
+            </div>
+          <h4>Title: <%=issue.name%></h4>
+          <h5>Description: <%=issue.description%></h5>
+          <h6>Author: <%=issue.author%></h6>
+          <p>Labels: <%=issue.labels%></p>
+        </div>
+        <%}%>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%}%>

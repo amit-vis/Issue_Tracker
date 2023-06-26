@@ -12,7 +12,7 @@ module.exports.home = async function(req, res){
         })
         
     } catch (error) {
-        console.log("Error", err);
+        console.log("Error", error);
         return;
         
     }

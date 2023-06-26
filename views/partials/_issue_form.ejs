@@ -8,24 +8,27 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="" method="post">
+        <form action="/project/<%=project._id%>" method="post">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Title:</label>
-            <input type="text" name="name" class="form-control" id="recipient-name">
+            <input type="text" name="name" class="form-control" value="<%=project.name%>" id="recipient-name">
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Description:</label>
-            <textarea class="form-control" name="description" id="description"></textarea>
+            <textarea class="form-control" name="description" id="description"><%=project.description%></textarea>
           </div>
+          <% if(project.labels.length>0) { %>
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Labels
               </button>
-    
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">label</a></li>
+                <% for(let label of project.labels){%>
+                <li><a class="dropdown-item" href="#"><%=label%></a></li>
+                <%}%>
               </ul>
             </div>
+            <%}%>
             <div class="row mb-3 m-auto">
               <label for="labels" class="col-sm-4 col-form-label">Add Labels</label>
     
@@ -48,14 +51,14 @@
             </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Author:</label>
-            <input type="text" name="author" class="form-control" id="author">
+            <input type="text" name="author" value="<%=project.author%>" class="form-control" id="author">
           </div>
-        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="Submit" class="btn btn-primary">Create Issue</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
