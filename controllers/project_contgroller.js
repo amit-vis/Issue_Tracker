@@ -94,17 +94,16 @@ module.exports.createIssueSession = async function (req, res) {
 }
 
 module.exports.deleteIssue = async function (req, res) {
-    console.log(req)
     try {
-        let Issue = await createIssue.findByIdAndDelete(req.query.id)
-        console.log("issue delete function",Issue)
-        if (Issue) {
+        let deleteIssue = await createIssue.findByIdAndDelete(req.query.id);
+        if(deleteIssue){
             return res.redirect('back');
         }
-
+      
     } catch (error) {
-        console.log("Error", error);
-        return
-
+      console.log("Error", error);
+      return;
     }
-}
+  };
+
+  
