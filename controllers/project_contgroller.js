@@ -11,7 +11,7 @@ module.exports.createSession = async function (req, res) {
         });
         if (create) {
             console.log("********", create)
-            return ('back');
+            return res.redirect('back');
         }
 
     } catch (error) {
@@ -25,7 +25,14 @@ module.exports.delete = async function (req, res) {
     try {
         let deletedProject = await createProject.findByIdAndDelete(req.query.id)
         if (deletedProject) {
-            console.log("hello delete")
+            if(req.xhr){
+                return res.status(200).json({
+                    data: {
+                        project_id: req.query.id
+                    },
+                    message: "project Deleted"
+                });
+            }
             return res.redirect('back');
         }
     } catch (error) {
