@@ -20,7 +20,7 @@
               <% for(let issue of project.issues){ %>
               <div id="all-issues" class="card w-100" style="width: 18rem" id="issue-<%= issue.id %>">
                 <div class="card-body">
-                  <a href="/project/issue/delete?id=<%=issue.id%>">X</a>
+                  <a href="/project/issue/delete?id=<%=issue.id%>" class="delete-link-issue">X</a>
                   <h4 class="card-title">Title : <%= issue.name %></h4>
                   <h5 class="card-title">Author : <%= issue.author %></h5>
                   <h6 class="card-subtitle mb-2 text-muted">
@@ -139,5 +139,6 @@
   <div id="issue-data" data="<%=JSON.stringify(project.issues)%>"></div>
   <script src="/js/filterIssue.js"></script>
   <script src="/js/searchIssue.js"></script>
+  <script src="/js/delete_issue.js"></script>
  
   

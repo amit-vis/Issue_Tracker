@@ -10,13 +10,15 @@ module.exports.createSession = async function (req, res) {
             author: req.body.author
         });
         if (create) {
-            console.log("********", create)
+            req.flash("success", "Project Created");
             return res.redirect('back');
         }
+        req.flash("success", "Project Created");
+        return res.redirect('back');
 
     } catch (error) {
-        console.log("Error", error);
-        return
+        req.flash("error", error);
+        return res.redirect('back');
 
     }
 }
@@ -25,7 +27,7 @@ module.exports.delete = async function (req, res) {
     try {
         let deletedProject = await createProject.findByIdAndDelete(req.query.id)
         if (deletedProject) {
-            if(req.xhr){
+            if (req.xhr) {
                 return res.status(200).json({
                     data: {
                         project_id: req.query.id
@@ -33,21 +35,17 @@ module.exports.delete = async function (req, res) {
                     message: "project Deleted"
                 });
             }
+            req.flash("success", "Project Deleted")
             return res.redirect('back');
         }
     } catch (error) {
-        console.log("Error", error);
-        return
+        req.flash("error", error)
+        return res.redirect('back');
     }
 }
 
 module.exports.projectDetails = async function (req, res) {
     try {
-        // const projectId = req.params.id;
-        // if (!mongoose.Types.ObjectId.isValid(projectId)) {
-        //     // Invalid ObjectId format
-        //     return res.redirect('back');
-        // }
         const project = await createProject.findById(req.params.id).populate({
             path: "issues",
         });
@@ -88,29 +86,33 @@ module.exports.createIssueSession = async function (req, res) {
                 }
             }
             await project.save();
+            req.flash("success", "Issue Created")
             return res.redirect('back');
         } else {
+            req.flash("success", "Issue Created")
             return res.redirect('back');
         }
 
     } catch (error) {
-        console.log("Error", err);
-        return
+        req.flash("error", error);
+        return res.redirect('back');
 
     }
 }
 
 module.exports.deleteIssue = async function (req, res) {
     try {
-        let deleteIssue = await createIssue.findByIdAndDelete(req.query.id);
-        if(deleteIssue){
-            return res.redirect('back');
+        let deleteData = await createIssue.findByIdAndDelete(req.query.id);
+        if (deleteData) {
+            req.flash("success", "Issue Deleted");
+            return res.redirect('back');      
+                
         }
-      
-    } catch (error) {
-      console.log("Error", error);
-      return;
-    }
-  };
+        req.flash('success', 'Issue Deleted');
+        return res.redirect('back')
 
-  
+    } catch (error) {
+        req.flash("error", error);
+        return res.redirect('back');
+    }
+}
