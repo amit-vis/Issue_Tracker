@@ -104,6 +104,11 @@ module.exports.deleteIssue = async function (req, res) {
     try {
         let deleteData = await createIssue.findByIdAndDelete(req.query.id);
         if (deleteData) {
+            if(req.xhr){
+                return res.status(200).json({
+                    message: "Issue Deleted"
+                })
+            }
             req.flash("success", "Issue Deleted");
             return res.redirect('back');      
                 

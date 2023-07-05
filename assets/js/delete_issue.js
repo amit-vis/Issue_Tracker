@@ -1,24 +1,29 @@
-// {
-//     let deleteIssue = function (deleteLink) {
-//         console.log(deleteLink)
-//         $(deleteLink).click(function (e) {
-//             e.preventDefault();
+{
+    let deleteIssue = function (deleteLink) {
+            $.ajax({
+                type: "get",
+                url: $(deleteLink).prop('href'),
+                success: function (data) {
+                    $(deleteLink).closest('.card').remove();
 
-//             $.ajax({
-//                 type: "get",
-//                 url: $(deleteLink).prop('href'),
-//                 success: function (data) {
-//                     $(`#issue-${data.data.issue_id}`).remove();
-//                 }, error: function (error) {
-//                     console.log("Error", error);
-//                 }
-//             })
-//         })
-//     }
+                    new Noty({
+                        theme: "relax",
+                        text: data.message,
+                        type: "success",
+                        layout: "topRight",
+                        timeout: 1500
+                      }).show();
 
-//     $(document).ready(function(){
-//         $('.delete-link-issue').each(function () {
-//             deleteIssue(this);
-//         })
-//     })
-// }
+                }, error: function (error) {
+                    console.log("Error", error);
+                }
+            })
+    }
+
+    $(document).ready(function(){
+        $('.delete-link-issue').click(function (e) {
+            e.preventDefault();
+            deleteIssue(this);
+        });
+    });
+}
