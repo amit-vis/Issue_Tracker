@@ -18,18 +18,23 @@ filterIssueForm.addEventListener('submit', (e)=>{
 
     // get elements from form
     let labelList = filterIssueForm.querySelectorAll("input[type=checkbox]");
+    // filter the elements from the label list
     let labelElements = [...labelList].filter((Element)=>Element.checked);
 
+    // here filter the data by his input type and name
     let authorVal = filterIssueForm.querySelector("input[type=radio][name=author]:checked");
 
+    // Here we have map the data to get value of the labelElements
     let [...labelArr] = labelElements.map((Element) => Element.value);
 
+    // Here we have push the data into our filtered issue array
     issue.map((el)=>{
         if(el.author === authorVal){
             if(filteredIssue.includes(el)){
                 filteredIssue.push(el);
             }
         }
+        // Here we have push the data into our filtered issue array
         labelArr.map((label)=>{
             if(el.labels.includes(label)){
                 if(!filteredIssue.includes(el)){
@@ -40,15 +45,17 @@ filterIssueForm.addEventListener('submit', (e)=>{
     });
 
     issueList.innerHTML = '';
+
+    // here we show the conatiner
     filteredIssue.forEach((issue)=>{
         let Div = document.createElement('div');
         Div.style = "none";
         Div.innerHTML = `
-        <div class="card w-100" >
+        <div class="card w-100 issue-card" >
       <div class="card-body" >
-        <h4 class="card-title">Title : ${issue.title} </h4>
+        <h4 class="card-title">Title : ${issue.name} </h4>
         <h5 class="card-title">Author : ${issue.author}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">
+        <h6 class="card-subtitle mb-2">
           Description : ${issue.description}
         </h6>
       </div>

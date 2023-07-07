@@ -1,14 +1,16 @@
 {
-    // method to submit the form data for new post using Ajax
+    // method of deleting the data using ajax
     let deleteProject = function(deleteLink){
         $(deleteLink).click(function(e){
             e.preventDefault();
-
+            // we have use the ajax to controll the function
             $.ajax({
                 type: "get",
                 url: $(deleteLink).prop('href'),
                 success: function(data){
                     $(`#project-${data.data.project_id}`).remove();
+
+                    // written a code for show the notification
                     new Noty({
                         theme: "relax",
                         text: "Project Deleted",
@@ -22,6 +24,8 @@
             })
         })
     }
+
+    // delete the data here we have called the function
     $(document).ready(function(){
         $('.delete-link').each(function(){
             deleteProject(this);

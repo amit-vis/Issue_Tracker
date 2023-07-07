@@ -1,17 +1,25 @@
+// get the search issue form
 let searchIssueForm = document.getElementById('search-issue-form');
 
+// get the details of the issue in json
 let searchJson = document.getElementById('issue-data').getAttribute('data');
 
+// parse the data into search parse variable
 let searchParse = JSON.parse(searchJson);
 
+// get the element where we display out result of the filter
 let showIssueData = document.getElementById('issues-list');
 
 searchIssueForm.addEventListener('submit', (e)=>{
     e.preventDefault();
 
+    // create a empty Array
     let searchIssueArray = [];
 
+    // get the element from the form by its name
     let titleValue = searchIssueForm.querySelector('input[name=tie]').value;
+
+    // get the element from the form by its description
     let descriptionValue = searchIssueForm.querySelector('input[name=des]').value;
 
     searchParse.map((el)=>{
@@ -22,6 +30,7 @@ searchIssueForm.addEventListener('submit', (e)=>{
         }
     });
 
+    // we have shown make and shown our container here
     showIssueData.innerHTML = '';
     searchIssueArray.forEach((issue)=>{
         let Div = document.createElement('div');

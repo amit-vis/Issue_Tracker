@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/issue_page.css">
+
 <!-- this partial contains two buttons ..
 1- to show all the issues.
 2- to search/ filter issues -->
@@ -20,7 +22,11 @@
               <% for(let issue of project.issues){ %>
               <div id="all-issues" class="card w-100" style="width: 18rem" id="issue-<%= issue.id %>">
                 <div class="card-body">
-                  <a href="/project/issue/delete?id=<%=issue.id%>" class="delete-link-issue">X</a>
+                  <div class="delete-issue">
+                    <a href="/project/issue/delete?id=<%=issue.id%>" class="delete-link-issue">
+                      <i class="fa-solid fa-trash fa-bounce" style="color: #1f5120;"></i>
+                    </a>
+                  </div>
                   <h4 class="card-title">Title : <%= issue.name %></h4>
                   <h5 class="card-title">Author : <%= issue.author %></h5>
                   <h6 class="card-subtitle mb-2 text-muted">
