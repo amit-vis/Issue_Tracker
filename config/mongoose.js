@@ -1,3 +1,4 @@
+// connected to database
 const mongoose = require('mongoose');
 
 mongoose.connect(`mongodb://0.0.0.0/Issue_tracker`);

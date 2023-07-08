@@ -1,7 +1,9 @@
+// require all the required data
 const createProject = require('../models/create_project');
 const createIssue = require('../models/create_issue');
 const mongoose = require('mongoose');
 
+// code for create the project details
 module.exports.createSession = async function (req, res) {
     try {
         const create = await createProject.create({
@@ -10,6 +12,7 @@ module.exports.createSession = async function (req, res) {
             author: req.body.author
         });
         if (create) {
+            // show the flash the notification
             req.flash("success", "Project Created");
             return res.redirect('back');
         }
@@ -23,10 +26,13 @@ module.exports.createSession = async function (req, res) {
     }
 }
 
+// code for delete the project details
 module.exports.delete = async function (req, res) {
     try {
         let deletedProject = await createProject.findByIdAndDelete(req.query.id)
         if (deletedProject) {
+
+            // code for delete the project details using ajax
             if (req.xhr) {
                 return res.status(200).json({
                     data: {
@@ -35,6 +41,7 @@ module.exports.delete = async function (req, res) {
                     message: "project Deleted"
                 });
             }
+            // show the flash the notification
             req.flash("success", "Project Deleted")
             return res.redirect('back');
         }
@@ -44,6 +51,7 @@ module.exports.delete = async function (req, res) {
     }
 }
 
+// code for render the project Details
 module.exports.projectDetails = async function (req, res) {
     try {
         const project = await createProject.findById(req.params.id).populate({
@@ -61,6 +69,7 @@ module.exports.projectDetails = async function (req, res) {
     }
 }
 
+// code for create the Issue
 module.exports.createIssueSession = async function (req, res) {
     try {
         let project = await createProject.findById(req.params.id)
@@ -100,15 +109,20 @@ module.exports.createIssueSession = async function (req, res) {
     }
 }
 
+// code for delete the issue
 module.exports.deleteIssue = async function (req, res) {
     try {
         let deleteData = await createIssue.findByIdAndDelete(req.query.id);
         if (deleteData) {
+
+            // handle the ajax functionality
             if(req.xhr){
                 return res.status(200).json({
                     message: "Issue Deleted"
                 })
             }
+            
+            // show the flash the notification
             req.flash("success", "Issue Deleted");
             return res.redirect('back');      
                 

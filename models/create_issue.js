@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// create a schema for issue
 const createIssueSchema = new mongoose.Schema({
     name:{
         type: String,

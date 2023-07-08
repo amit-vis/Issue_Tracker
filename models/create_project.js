@@ -1,6 +1,7 @@
 const { timeStamp } = require('console');
 const mongoose = require('mongoose');
 
+// create a schema for project
 const createProjectSchema = new mongoose.Schema({
     name:{
         type: String,
