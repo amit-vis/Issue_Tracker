@@ -1,7 +1,7 @@
 // connected to database
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://0.0.0.0/Issue_tracker`);
+mongoose.connect(`mongodb+srv://amit917480:AbYQ1fPSDes3IYf9@cluster0.r0y0yem.mongodb.net/Issue-Tracker`);
 
 const db = mongoose.connection;
 
